@@ -45,6 +45,35 @@ function showNotes() {
 
 
 }
+addBtn.addEventListener("click", function (e) {
+    let addTxt = document.getElementById("addTxt");
+    let addTitle = document.getElementById("noteTitle");
+
+    let notesTxt = addTxt.value;
+    let titleTxt = addTitle.value;
+
+    let notes = localStorage.getItem("notes");
+    let title = localStorage.getItem("title");
+
+    let notesArr = [];
+    let titleArr = [];
+    if (notes != null) {
+        notesArr = JSON.parse(notes);
+    }
+    if (title != null) {
+        titleArr = JSON.parse(title);
+    }
+    notesArr.push(notesTxt);
+    titleArr.push(titleTxt);
+
+    localStorage.setItem("notes", JSON.stringify(notesArr));
+    localStorage.setItem("title",JSON.stringify(titleArr));
+
+    //console.log(localStorage);
+    addTxt.value = "";
+    addTitle.value="";
+    showNotes();
+});
 ReactDOM.render(
   <React.StrictMode>
     <App />
