@@ -96,6 +96,18 @@ function deleteNote(index){
     
     showNotes();
 }
-
+let search = document.getElementById("search");
+search.addEventListener("input",function(element){
+    let notes = document.getElementsByClassName("noteCard");
+    Array.from(notes).forEach(function(element){
+        let text = element.getElementsByTagName("p")[0].innerText;
+        if(text.includes(search.value)){
+            element.style.display = "block";
+        }
+        else{
+            element.style.display = "none";
+        }
+    });
+});
 
 serviceWorker.register();
