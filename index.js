@@ -80,5 +80,22 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root'),
 );
+function deleteNote(index){
+    //console.log("Deleting note ",index);
+    let notes = localStorage.getItem("notes");
+    let title = localStorage.getItem("title");
+
+    let notesArr = JSON.parse(notes);
+    let titleArr = JSON.parse(title);
+
+    notesArr.splice(index,1);
+    titleArr.splice(index,1);
+
+    localStorage.setItem("notes",JSON.stringify(notesArr));
+    localStorage.setItem("title",JSON.stringify(titleArr));
+    
+    showNotes();
+}
+
 
 serviceWorker.register();
